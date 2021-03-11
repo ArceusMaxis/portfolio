@@ -24,7 +24,7 @@
     flex: 1 1 auto;
     margin-left: 3.5%;
     font-weight: 800;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Monserrat", sans-serif;
     font-size: 30px;
     text-decoration: none;
 }
@@ -65,42 +65,41 @@ a:hover{
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: #5DADE2;
+    color: #5DADE2;
 }
 #img2{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: #e25d5d;
+    color: #e25d5d;
 }
 #img3{
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: #e2e05d;
+    
 }
 #img4{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-    background-color: #68e25d;
+    
 }
 #img5{
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 4;
-    background-color: #a25de2;
+    
 }
 #img6{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 4;
-    background-color: #e25dc5;
 }
 .img:hover{
     opacity: 0.4;
@@ -138,4 +137,10 @@ a:hover{
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
-} 
+}
+p{
+    font-family: "Nunito", sans-serif;
+    font-size: 1.6vw;
+    margin-left: 40px;
+    margin-right: 40px;
+}
