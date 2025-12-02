@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Game Designer Portfolio - Project Showcase">
+    <title>Showcase | Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="page-loader">
+        <div class="loader-text">LOADING...</div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <span class="corner-decoration top-left">A</span>
+    <span class="corner-decoration top-right">B</span>
+    <span class="corner-decoration bottom-left">C</span>
+    <span class="corner-decoration bottom-right">D</span>
+
+    <nav class="nav-container">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">PORTFOLIO</a>
+            
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="showcase.html" class="active">Showcase</a></li>
+                <li><a href="spotlight.html">Spotlight</a></li>
+                <li><a href="cv-resume.html">CV & Resume</a></li>
+                <li><a href="https://your-itch-page.itch.io" target="_blank" rel="noopener" class="itch-link">itch.io ↗</a></li>
+            </ul>
+            
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <span class="icon-sun">☀</span>
+                <span class="icon-moon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <section class="section">
+            <div class="section-header">
+                <h1 class="section-title decorative-text">Showcase</h1>
+            </div>
+            <div class="showcase-container">
+                <article class="showcase-item">
+                    <div class="media-carousel">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide">
+                                <img src="images/project1-1.jpg" alt="Project 1 Screenshot 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/project1-2.jpg" alt="Project 1 Screenshot 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <video controls>
+                                    <source src="videos/project1-trailer.mp4" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn carousel-prev" aria-label="Previous">←</button>
+                            <div class="carousel-dots"></div>
+                            <button class="carousel-btn carousel-next" aria-label="Next">→</button>
+                        </div>
+                    </div>
+                    
+                    <div class="showcase-content">
+                        <h2 class="showcase-title">PHOSPHORUS</h2>
+                        <p class="showcase-text">
+                            A first-person maze/dungeon crawler with horror elements, 
+                            built in Godot. Players navigate a labyrinths filled with eerie atmospheres and challenging 
+                            puzzles. Features dynamic lighting, ambient sound design, 
+                            and a unique "looping" narrative. 
+                            Winner of the inaugural Godot India Community Game Jam in 2 categories (Overall, Audio).
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">Maze/Dungeon</span>
+                            <span class="tag">FPS</span>
+                            <span class="tag">Alt. Horror</span>
+                            <span class="tag">Godot</span>
+                            <span class="tag">Solo</span>
+                        </div>
+                    </div>
+                </article>
+            
+                <div class="dingbat-divider">K L K</div>
+
+                <article class="showcase-item">
+                    <div class="showcase-content">
+                        <h2 class="showcase-title">Moros</h2>
+                        <p class="showcase-text">
+                            A remake of the hit game FLUOROANTIMONIC in the Godot Engine. The player collects offerings to appease a hungering god whose ichor spills from the skies as hazards.
+
+                            Solo-developed in a very small time span and it features PACKAGE ENCRYPTION [DRM], which was an interesting challenge to implement in Godot.
+                        </p>
+                        <div class="showcase-tags">
+                            <span class="tag">FPS</span>
+                            <span class="tag">Atmospheric</span>
+                            <span class="tag">High Score</span>
+                            <span class="tag">Solo</span>
+                            <span class="tag">Godot</span>
+                        </div>
+                    </div>
+                    <div class="media-carousel">
+                        <div class="carousel-slides">
+                            <div class="carousel-slide">
+                                <img src="images/project2-1.jpg" alt="Project 2 Screenshot 1">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/project2-2.jpg" alt="Project 2 Screenshot 2">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="images/project2-3.jpg" alt="Project 2 Screenshot 3">
+                            </div>
+                        </div>
+                        <div class="carousel-controls">
+                            <button class="carousel-btn carousel-prev" aria-label="Previous">←</button>
+                            <div class="carousel-dots"></div>
+                            <button class="carousel-btn carousel-next" aria-label="Next">→</button>
+                        </div>
+                    </div>
+                </article>
+            
+                <div class="dingbat-divider">M N M</div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-dingbat">C H A H C</div>
+            <p class="footer-text">2025 Chaak. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://chaak-007.itch.io" target="_blank" rel="noopener">itch.io</a>
+                <a href="mailto:octohands@gmail.com">Email</a>
+                <a href="https://twitter.com/chaak_007" target="_blank" rel="noopener">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
