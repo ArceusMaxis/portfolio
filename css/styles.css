@@ -523,7 +523,7 @@ main {
     transform: scale(1.05);
 }
 
-.scroll-window-frame {
+.scroll-window-frame-top {
     position: absolute;
     top: -15px;
     left: 50%;
@@ -534,6 +534,20 @@ main {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.2em;
+}
+
+.scroll-window-frame-bottom {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--bg-main);
+    padding: 0.5rem 2rem;
+    border: 3px solid var(--border-color);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    z-index: -1;
 }
 
 .about-grid {
@@ -1161,8 +1175,8 @@ main {
 
 .scroll-top {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 33.5vh;
+    left: 93.5vw;
     width: 60px;
     height: 60px;
     background: var(--bg-alt);
@@ -1458,7 +1472,7 @@ button:focus {
 .showcase-item::after {
     content: counter(showcase, decimal-leading-zero);
     position: absolute;
-    top: -1rem;
+    top: 1rem;
     right: 2rem;
     font-family: 'FleuronMixed', fantasy;
     font-size: 4rem;
@@ -1483,4 +1497,51 @@ button:focus {
 
 .spotlight-item:hover::after {
     width: 50px;
+}
+
+.music-toggle {
+    position: fixed;
+    bottom: 23.5vh;
+    left: 93.5vw;
+    width: 60px;
+    height: 60px;
+    background: var(--bg-alt);
+    color: var(--text-alt);
+    border: 3px solid var(--border-color);
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    transition: all var(--transition-fast);
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--glow-color);
+}
+
+.music-toggle .music-on {
+    display: block;
+    animation: pulse 1s infinite;
+}
+
+.music-toggle .music-off {
+    display: none;
+}
+
+.music-toggle.paused .music-on {
+    display: none;
+}
+
+.music-toggle.paused .music-off {
+    display: block;
+    animation: none;
+    opacity: 0.5;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
 }

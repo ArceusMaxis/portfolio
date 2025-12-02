@@ -386,3 +386,74 @@ function initCustomCursor() {
 }
 
 document.addEventListener('DOMContentLoaded', initCustomCursor);
+
+function initBackgroundMusic() {
+    const audio = document.createElement('audio');
+    audio.id = 'bg-music';
+    audio.loop = true;
+    audio.volume = 0.3;
+    audio.src = 'media/music/thesmalluniverseinyourheart-yukakemonster.mp3'; 
+    document.body.appendChild(audio);
+
+    const savedTime = localStorage.getItem('musicTime');
+    const isPlaying = localStorage.getItem('musicPlaying') === 'true';
+
+    if (savedTime) {
+        audio.currentTime = parseFloat(savedTime);
+    }
+
+    setInterval(() => {
+        if (!audio.paused) {
+            localStorage.setItem('musicTime', audio.currentTime);
+        }
+    }, 500);
+
+    window.addEventListener('beforeunload', () => {
+        localStorage.setItem('musicTime', audio.currentTime);
+        localStorage.setItem('musicPlaying', !audio.paused);
+    });
+
+    const musicToggle = document.createElement('button');
+    musicToggle.className = 'music-toggle';
+    musicToggle.setAttribute('aria-label', 'Toggle music');
+    musicToggle.innerHTML = '<span class="music-on">♫</span><span class="music-off">♪</span>';
+    document.body.appendChild(musicToggle);
+
+    function updateButtonState() {
+        if (audio.paused) {
+            musicToggle.classList.add('paused');
+        } else {
+            musicToggle.classList.remove('paused');
+        }
+    }
+
+    musicToggle.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            localStorage.setItem('musicPlaying', 'true');
+        } else {
+            audio.pause();
+            localStorage.setItem('musicPlaying', 'false');
+        }
+        updateButtonState();
+    });
+
+    if (isPlaying) {
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.catch(() => {
+                document.addEventListener('click', function resumeAudio() {
+                    if (localStorage.getItem('musicPlaying') === 'true') {
+                        audio.play();
+                        updateButtonState();
+                    }
+                    document.removeEventListener('click', resumeAudio);
+                }, { once: true });
+            });
+        }
+    }
+
+    updateButtonState();
+}
+
+document.addEventListener('DOMContentLoaded', initBackgroundMusic);
