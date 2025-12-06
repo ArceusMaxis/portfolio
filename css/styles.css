@@ -185,7 +185,7 @@ a:hover {
 
 .nav-links {
     display: flex;
-    gap: 0;
+    gap: 10px;
     list-style: none;
 }
 
@@ -236,7 +236,7 @@ a:hover {
     background: var(--bg-alt);
     color: var(--text-alt);
     border: 3px solid var(--border-color);
-    margin-left: 1rem;
+    margin-left: 0px;
 }
 
 .nav-links .itch-link:hover {
@@ -1544,4 +1544,205 @@ button:focus {
 @keyframes pulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }
+}
+
+.media-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn var(--transition-fast) ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes buttonClick {
+    0% {
+        transform: translateY(-50%) scale(1.1);
+    }
+    50% {
+        transform: translateY(-50%) scale(0.95);
+    }
+    100% {
+        transform: translateY(-50%) scale(1.1);
+    }
+}
+
+.media-popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.media-popup-container {
+    position: relative;
+    z-index: 2;
+    max-width: 90vw;
+    max-height: 90vh;
+    width: 100%;
+    aspect-ratio: 16/9;
+    border: 4px solid var(--border-color);
+    background: var(--bg-alt);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.media-popup-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.media-popup-static {
+    width: 100%;
+    height: 100%;
+    object-fit: fit;
+}
+
+.media-popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 50px;
+    height: 50px;
+    background: var(--bg-main);
+    border: 3px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    line-height: 1;
+    padding: 0;
+}
+
+.media-popup-close:hover {
+    background: var(--bg-alt);
+    color: var(--text-alt);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.media-popup-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: var(--bg-main);
+    border: 3px solid var(--border-color);
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    z-index: 3;
+}
+
+.media-popup-nav:hover {
+    background: var(--bg-alt);
+    color: var(--text-alt);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.media-popup-nav:active {
+    animation: buttonClick 0.3s ease;
+}
+
+.media-popup-prev {
+    left: 10px;
+}
+
+.media-popup-next {
+    right: 10px;
+}
+
+.media-popup-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 2rem 1.5rem 1.5rem;
+    z-index: 2;
+    min-height: 80px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.media-popup-title {
+    font-family: 'FleuronMixed', fantasy;
+    font-size: 1.5rem;
+    color: var(--text-alt);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+    .media-popup-container {
+        max-width: 95vw;
+        max-height: 80vh;
+    }
+
+    .media-popup-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .media-popup-prev {
+        left: 5px;
+    }
+
+    .media-popup-next {
+        right: 5px;
+    }
+
+    .media-popup-close {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+        top: 5px;
+        right: 5px;
+    }
+
+    .media-popup-info {
+        padding: 1.5rem 1rem 1rem;
+        min-height: 60px;
+    }
+
+    .media-popup-title {
+        font-size: 1.2rem;
+    }
 }

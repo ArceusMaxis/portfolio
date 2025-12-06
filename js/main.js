@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollWindow();
     initPageLoader();
     initScrollToTop();
+    initMediaPopup();
 });
 
 function initTheme() {
@@ -457,3 +458,145 @@ function initBackgroundMusic() {
 }
 
 document.addEventListener('DOMContentLoaded', initBackgroundMusic);
+
+function initMediaPopup() {
+    const mediaPopup = document.getElementById('media-popup');
+    if (!mediaPopup) return;
+
+    let allMediaItems = [];
+
+    const collectMediaItems = () => {
+        allMediaItems = [];
+        const showcaseItems = document.querySelectorAll('.showcase-item');
+        
+        showcaseItems.forEach((item) => {
+            const projectTitle = item.querySelector('.showcase-title')?.textContent || 'Project';
+            const slides = item.querySelectorAll('.carousel-slide');
+            
+            slides.forEach((slide) => {
+                const img = slide.querySelector('img');
+                const video = slide.querySelector('video');
+                
+                if (img) {
+                    allMediaItems.push({
+                        type: 'image',
+                        src: img.src,
+                        alt: img.alt,
+                        projectTitle: projectTitle,
+                        element: img
+                    });
+                } else if (video) {
+                    const source = video.querySelector('source');
+                    if (source) {
+                        allMediaItems.push({
+                            type: 'video',
+                            src: source.src,
+                            alt: 'Video',
+                            projectTitle: projectTitle,
+                            element: video
+                        });
+                    }
+                }
+            });
+        });
+    };
+
+    collectMediaItems();
+
+    let currentMediaIndex = 0;
+    let isOpen = false;
+
+    const attachMediaClickHandlers = () => {
+        allMediaItems.forEach((media, index) => {
+            if (media.element) {
+                media.element.style.cursor = 'pointer';
+                media.element.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openPopup(index);
+                });
+            }
+        });
+    };
+
+    const openPopup = (index) => {
+        if (allMediaItems.length === 0) return;
+        
+        currentMediaIndex = index;
+        isOpen = true;
+        displayMedia(currentMediaIndex);
+        mediaPopup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closePopup = () => {
+        isOpen = false;
+        mediaPopup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    };
+
+    const displayMedia = (index) => {
+        if (allMediaItems.length === 0) return;
+        
+        if (index >= allMediaItems.length) {
+            currentMediaIndex = 0;
+        } else if (index < 0) {
+            currentMediaIndex = allMediaItems.length - 1;
+        } else {
+            currentMediaIndex = index;
+        }
+
+        const media = allMediaItems[currentMediaIndex];
+        const imgEl = mediaPopup.querySelector('#media-popup-img');
+        const videoEl = mediaPopup.querySelector('#media-popup-video');
+        const titleEl = mediaPopup.querySelector('.media-popup-title');
+
+        imgEl.style.display = 'none';
+        videoEl.style.display = 'none';
+
+        if (media.type === 'image') {
+            imgEl.src = media.src;
+            imgEl.alt = media.alt;
+            imgEl.style.display = 'block';
+        } else if (media.type === 'video') {
+
+            videoEl.innerHTML = '';
+            const source = document.createElement('source');
+            source.src = media.src;
+            source.type = 'video/mp4';
+            videoEl.appendChild(source);
+            videoEl.style.display = 'block';
+            videoEl.play().catch(() => {
+            });
+        }
+
+        titleEl.textContent = media.alt;
+    };
+
+    const nextMedia = () => {
+        displayMedia(currentMediaIndex + 1);
+    };
+
+    const prevMedia = () => {
+        displayMedia(currentMediaIndex - 1);
+    };
+
+    const closeBtn = mediaPopup.querySelector('.media-popup-close');
+    const nextBtn = mediaPopup.querySelector('.media-popup-next');
+    const prevBtn = mediaPopup.querySelector('.media-popup-prev');
+    const overlay = mediaPopup.querySelector('.media-popup-overlay');
+
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+    if (nextBtn) nextBtn.addEventListener('click', nextMedia);
+    if (prevBtn) prevBtn.addEventListener('click', prevMedia);
+    if (overlay) overlay.addEventListener('click', closePopup);
+
+    document.addEventListener('keydown', (e) => {
+        if (!isOpen) return;
+        
+        if (e.key === 'Escape') closePopup();
+        if (e.key === 'ArrowRight') nextMedia();
+        if (e.key === 'ArrowLeft') prevMedia();
+    });
+
+    attachMediaClickHandlers();
+}

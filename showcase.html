@@ -20,7 +20,7 @@
 
     <nav class="nav-container">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo">PORTFOLIO</a>
+            <a href="index.html" class="nav-logo">CHAAK</a>
             
             <button class="nav-toggle" aria-label="Toggle navigation">
                 <span></span>
@@ -53,10 +53,10 @@
                     <div class="media-carousel">
                         <div class="carousel-slides">
                             <div class="carousel-slide">
-                                <img src="images/project1-1.jpg" alt="Project 1 Screenshot 1">
+                                <img src="media/images/phosphorus1.png" alt="Project 1 Screenshot 1">
                             </div>
                             <div class="carousel-slide">
-                                <img src="images/project1-2.jpg" alt="Project 1 Screenshot 2">
+                                <img src="media/images/phosphorus1.png" alt="Project 1 Screenshot 2">
                             </div>
                             <div class="carousel-slide">
                                 <video controls>
@@ -148,6 +148,22 @@
     </footer>
 
     <button class="scroll-top" aria-label="Scroll to top">↑</button>
+
+    <div id="media-popup" class="media-popup" style="display: none;">
+        <div class="media-popup-overlay"></div>
+        <div class="media-popup-container">
+            <button class="media-popup-close" aria-label="Close media popup">×</button>
+            <button class="media-popup-nav media-popup-prev" aria-label="Previous media">←</button>
+            <button class="media-popup-nav media-popup-next" aria-label="Next media">→</button>
+            <div class="media-popup-content">
+                <img id="media-popup-img" class="media-popup-static" style="display: none;" />
+                <video id="media-popup-video" class="media-popup-static" style="display: none;" controls></video>
+            </div>
+            <div class="media-popup-info">
+                <h3 class="media-popup-title"></h3>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
 </body>
