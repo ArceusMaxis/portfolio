@@ -644,7 +644,7 @@ function initShowcaseGrid() {
                         <span class="showcase-card-year">${project.year}</span>
                         <div class="showcase-card-status">
                             ${project.released ? '<span class="showcase-card-status-icon">▶</span>' : '<span class="showcase-card-status-icon">⚙</span>'}
-                            <span>${project.released ? '' : 'WIP'}</span>
+                            <span>${project.released ? 'PLAYABLE' : 'DEMO VIDEO'}</span>
                         </div>
                     </div>
                 </div>

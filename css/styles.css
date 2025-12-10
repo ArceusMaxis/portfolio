@@ -657,12 +657,11 @@ main {
 .showcase-card-header {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
     opacity: 1;
 }
 
 .showcase-card-title {
-    font-family: 'FleuronMixed', fantasy;
+    font-family: 'FleuronRegular', fantasy;
     font-size: 1.8rem;
     color: var(--secondary);
     text-transform: uppercase;
@@ -1836,7 +1835,7 @@ button:focus {
 }
 
 .media-popup-title {
-    font-family: 'FleuronMixed', fantasy;
+    font-family: 'FleuronRegular', fantasy;
     font-size: 2.2rem;
     color: var(--primary);
     margin: 0 0 1rem 0;
@@ -1847,7 +1846,7 @@ button:focus {
 
 .media-popup-description {
     color: var(--primary);
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.4;
     text-align: left;
     margin: 0;
