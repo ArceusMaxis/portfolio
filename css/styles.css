@@ -594,6 +594,139 @@ main {
     margin-bottom: 0;
 }
 
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.showcase-card {
+    position: relative;
+    aspect-ratio: 1;
+    border: 4px solid var(--border-color);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--bg-alt);
+    transition: all var(--transition-fast);
+}
+
+.showcase-card:hover {
+    animation: borderPulse 2s infinite;
+    box-shadow: 0 0 30px var(--glow-color);
+}
+
+.showcase-card-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.showcase-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(to bottom, rgba(0, 27, 255, 1) 0%, rgba(0, 27, 255, 0) 30%),
+        rgba(0, 27, 255, 0);
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+}
+
+.showcase-card:hover .showcase-card-overlay {
+    background: rgba(0, 27, 255, 0.5);
+}
+
+[data-theme="dark"] .showcase-card-overlay {
+    background: 
+        linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 30%),
+        rgba(255, 255, 255, 0);
+}
+
+[data-theme="dark"] .showcase-card:hover .showcase-card-overlay {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.showcase-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 1;
+}
+
+.showcase-card-title {
+    font-family: 'FleuronMixed', fantasy;
+    font-size: 1.8rem;
+    color: var(--secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+    opacity: 1;
+}
+
+.showcase-card-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 1;
+}
+
+.showcase-card-year {
+    opacity: 1;
+}
+
+.showcase-card-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.showcase-card-status-icon {
+    font-size: 1.2rem;
+}
+
+.showcase-card-footer {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    opacity: 1;
+}
+
+.showcase-card-btn {
+    padding: 0.5rem 1rem;
+    background: var(--bg-main);
+    border: 2px solid var(--border-color);
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.showcase-card-btn:hover {
+    background: var(--text-main);
+    color: var(--bg-main);
+    transform: scale(1.05);
+}
+
 .showcase-container {
     display: flex;
     flex-direction: column;
@@ -1692,21 +1825,82 @@ button:focus {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(to top, var(--secondary), rgba(255, 255, 255, 0));
+    padding: 3rem 1.5rem 1.5rem;
     z-index: 2;
-    min-height: 80px;
+    min-height: 120px;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 .media-popup-title {
     font-family: 'FleuronMixed', fantasy;
-    font-size: 1.5rem;
-    color: var(--text-alt);
-    margin: 0;
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin: 0 0 1rem 0;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+    text-align: left;
+}
+
+.media-popup-description {
+    color: var(--primary);
+    font-size: 1rem;
+    line-height: 1.4;
+    text-align: left;
+    margin: 0;
+    max-width: 90%;
+}
+
+.media-popup-play-btn {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.7rem 1.2rem;
+    background: var(--secondary);
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'FleuronRegular', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-fast);
+    z-index: 3;
+    white-space: nowrap;
+}
+
+#media-popup-play-btn {
+    position: absolute;
+    bottom: 5rem;
+    right: 1.5rem;
+    padding: 0.7rem 1.2rem;
+    background: var(--secondary);
+    border: 2px solid var(--secondary);
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'FleuronRegular', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-fast);
+    z-index: 3;
+    white-space: nowrap;
+}
+
+.media-popup-play-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px var(--glow-color);
 }
 
 @media (max-width: 768px) {
@@ -1737,6 +1931,14 @@ button:focus {
         right: 5px;
     }
 
+    .media-popup-play-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 1rem;
+        right: 1rem;
+    }
+
     .media-popup-info {
         padding: 1.5rem 1rem 1rem;
         min-height: 60px;
@@ -1744,5 +1946,22 @@ button:focus {
 
     .media-popup-title {
         font-size: 1.2rem;
+    }
+
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .showcase-card-btn {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.8rem;
     }
 }

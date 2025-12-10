@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPageLoader();
     initScrollToTop();
     initMediaPopup();
+    initShowcaseGrid();
 });
 
 function initTheme() {
@@ -532,6 +533,14 @@ function initMediaPopup() {
         isOpen = false;
         mediaPopup.style.display = 'none';
         document.body.style.overflow = 'auto';
+        // Clear project data
+        delete mediaPopup.dataset.currentProject;
+        delete mediaPopup.dataset.currentMediaIndex;
+        // Clear auto-rotation timer
+        if (mediaPopup.autoRotationTimer) {
+            clearInterval(mediaPopup.autoRotationTimer);
+            mediaPopup.autoRotationTimer = null;
+        }
     };
 
     const displayMedia = (index) => {
@@ -571,13 +580,30 @@ function initMediaPopup() {
 
         titleEl.textContent = media.alt;
     };
-
     const nextMedia = () => {
-        displayMedia(currentMediaIndex + 1);
+        const mediaPopup = document.getElementById('media-popup');
+        // If using project-based popup
+        if (mediaPopup.dataset.currentProject !== undefined && typeof showcaseProjects !== 'undefined') {
+            const projectIndex = parseInt(mediaPopup.dataset.currentProject);
+            const currentIndex = parseInt(mediaPopup.dataset.currentMediaIndex || 0);
+            displayProjectMedia(showcaseProjects[projectIndex], currentIndex + 1);
+        } else {
+            // Old functionality
+            displayMedia(currentMediaIndex + 1);
+        }
     };
 
     const prevMedia = () => {
-        displayMedia(currentMediaIndex - 1);
+        const mediaPopup = document.getElementById('media-popup');
+        // If using project-based popup
+        if (mediaPopup.dataset.currentProject !== undefined && typeof showcaseProjects !== 'undefined') {
+            const projectIndex = parseInt(mediaPopup.dataset.currentProject);
+            const currentIndex = parseInt(mediaPopup.dataset.currentMediaIndex || 0);
+            displayProjectMedia(showcaseProjects[projectIndex], currentIndex - 1);
+        } else {
+            // Old functionality
+            displayMedia(currentMediaIndex - 1);
+        }
     };
 
     const closeBtn = mediaPopup.querySelector('.media-popup-close');
@@ -599,4 +625,193 @@ function initMediaPopup() {
     });
 
     attachMediaClickHandlers();
+}
+
+function initShowcaseGrid() {
+    const gridContainer = document.getElementById('showcase-grid');
+    if (!gridContainer || typeof showcaseProjects === 'undefined') return;
+
+    // Create HTML for each project card
+    showcaseProjects.forEach((project, projectIndex) => {
+        const card = document.createElement('div');
+        card.className = 'showcase-card';
+        card.innerHTML = `
+            <img src="${project.thumbnail}" alt="${project.title}" class="showcase-card-thumbnail" />
+            <div class="showcase-card-overlay">
+                <div class="showcase-card-header">
+                    <h3 class="showcase-card-title">${project.title}</h3>
+                    <div class="showcase-card-meta">
+                        <span class="showcase-card-year">${project.year}</span>
+                        <div class="showcase-card-status">
+                            ${project.released ? '<span class="showcase-card-status-icon">▶</span>' : '<span class="showcase-card-status-icon">⚙</span>'}
+                            <span>${project.released ? '' : 'WIP'}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="showcase-card-footer">
+                    <button class="showcase-card-btn album-btn" title="View album">OPEN ALBUM</button>
+                    ${project.released ? `<button class="showcase-card-btn play-btn" title="Play on itch.io">PLAY</button>` : ''}
+                </div>
+            </div>
+        `;
+
+        const thumbnailImg = card.querySelector('.showcase-card-thumbnail');
+        
+        // Album button - opens media popup
+        const albumBtn = card.querySelector('.album-btn');
+        if (albumBtn) {
+            albumBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openProjectMediaPopup(project, projectIndex);
+            });
+        }
+
+        // Play button - opens itch.io link
+        const playBtn = card.querySelector('.play-btn');
+        if (playBtn) {
+            playBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                window.open(project.itchUrl, '_blank');
+            });
+        }
+
+        // Start auto-rotation for thumbnail images
+        const imageCount = project.media.filter(m => m.type === 'image').length;
+        if (imageCount > 1) {
+            let currentImageIndex = 0;
+            const imageIndices = project.media
+                .map((m, i) => m.type === 'image' ? i : -1)
+                .filter(i => i !== -1);
+
+            card.thumbnailRotationTimer = setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % imageIndices.length;
+                const mediaIndex = imageIndices[currentImageIndex];
+                thumbnailImg.src = project.media[mediaIndex].src;
+            }, 1300);
+
+            // Clear timer when hovering or interacting
+            card.addEventListener('mouseleave', () => {
+                // Reset to first image
+                if (card.thumbnailRotationTimer) {
+                    currentImageIndex = 0;
+                    thumbnailImg.src = project.thumbnail;
+                }
+            });
+        }
+
+        gridContainer.appendChild(card);
+    });
+
+    // Attach scroll effects to new cards
+    const cards = gridContainer.querySelectorAll('.showcase-card');
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+
+    // Use intersection observer for animation
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    cards.forEach(card => observer.observe(card));
+}
+
+function openProjectMediaPopup(project, projectIndex) {
+    const mediaPopup = document.getElementById('media-popup');
+    if (!mediaPopup || !project.media || project.media.length === 0) return;
+
+    // Clear any existing auto-rotation timer
+    if (mediaPopup.autoRotationTimer) {
+        clearInterval(mediaPopup.autoRotationTimer);
+    }
+
+    // Update popup with project data
+    updateMediaPopupWithProject(project);
+
+    // Display first media item
+    displayProjectMedia(project, 0);
+
+    // Show popup
+    mediaPopup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Store current project for navigation
+    mediaPopup.dataset.currentProject = projectIndex;
+    mediaPopup.dataset.currentMediaIndex = 0;
+}
+
+function updateMediaPopupWithProject(project) {
+    const titleEl = document.querySelector('.media-popup-title');
+    const descEl = document.querySelector('.media-popup-description');
+    const playBtn = document.getElementById('media-popup-play-btn');
+
+    if (titleEl) titleEl.textContent = project.title;
+    if (descEl) descEl.textContent = project.description;
+
+    if (playBtn) {
+        if (project.released) {
+            playBtn.textContent = 'PLAY ▶';
+            playBtn.onclick = () => window.open(project.itchUrl, '_blank');
+        } else {
+            playBtn.textContent = 'WIP';
+            playBtn.onclick = null;
+        }
+    }
+}
+
+function displayProjectMedia(project, index) {
+    if (!project.media || project.media.length === 0) return;
+
+    // Wrap around
+    if (index >= project.media.length) {
+        index = 0;
+    } else if (index < 0) {
+        index = project.media.length - 1;
+    }
+
+    const media = project.media[index];
+    const imgEl = document.querySelector('#media-popup-img');
+    const videoEl = document.querySelector('#media-popup-video');
+    const infoEl = document.querySelector('.media-popup-info');
+
+    // Hide both elements first
+    imgEl.style.display = 'none';
+    videoEl.style.display = 'none';
+
+    if (media.type === 'image') {
+        imgEl.src = media.src;
+        imgEl.alt = media.alt;
+        imgEl.style.display = 'block';
+        // Show info for images
+        if (infoEl) infoEl.style.display = 'flex';
+    } else if (media.type === 'video') {
+        videoEl.innerHTML = '';
+        const source = document.createElement('source');
+        source.src = media.src;
+        source.type = 'video/mp4';
+        videoEl.appendChild(source);
+        videoEl.style.display = 'block';
+        videoEl.play().catch(() => {});
+        // Hide info for videos to keep controls accessible
+        if (infoEl) infoEl.style.display = 'none';
+    }
+
+    // Update popup data
+    const mediaPopup = document.getElementById('media-popup');
+    if (mediaPopup) {
+        mediaPopup.dataset.currentMediaIndex = index;
+    }
 }
