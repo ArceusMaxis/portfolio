@@ -798,11 +798,18 @@ function displayProjectMedia(project, index) {
         // Show info for images
         if (infoEl) infoEl.style.display = 'flex';
     } else if (media.type === 'video') {
+        // Completely reset video element
+        videoEl.pause();
+        videoEl.currentTime = 0;
         videoEl.innerHTML = '';
+        
         const source = document.createElement('source');
         source.src = media.src;
         source.type = 'video/mp4';
         videoEl.appendChild(source);
+        
+        // Load and play the new video
+        videoEl.load();
         videoEl.style.display = 'block';
         videoEl.play().catch(() => {});
         // Hide info for videos to keep controls accessible

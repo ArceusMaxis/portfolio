@@ -89,7 +89,6 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Project data for showcase grid
         const showcaseProjects = [
             {
                 id: 'phosphorus',
@@ -102,14 +101,14 @@
                 tags: ['Maze/Dungeon', 'FPS', 'Alt. Horror', 'Godot', 'Solo'],
                 media: [
                     { type: 'image', src: 'media/images/phosphorus1.png', alt: 'Phosphorus Screenshot 1' },
+                    { type: 'video', src: 'media/videos/phosphorus.mp4', alt: 'Phosphorus Trailer' },
                     { type: 'image', src: 'media/images/phosphorus2.png', alt: 'Phosphorus Screenshot 2' },
                     { type: 'image', src: 'media/images/phosphorus3.png', alt: 'Phosphorus Screenshot 3' },
-                    { type: 'video', src: 'media/videos/phosphorus.mp4', alt: 'Phosphorus Trailer' }
                 ]
             },
             {
                 id: 'moros',
-                title: 'MOROS',
+                title: 'Moros',
                 year: '2024',
                 released: true,
                 thumbnail: 'media/images/moros1.png',
@@ -118,25 +117,75 @@
                 tags: ['FPS', 'Atmospheric', 'High Score', 'Solo', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/moros1.png', alt: 'Moros Screenshot 1' },
+                    { type: 'video', src: 'media/videos/moros.mp4', alt: 'Moros Trailer' },
                     { type: 'image', src: 'media/images/moros2.png', alt: 'Moros Screenshot 2' },
                     { type: 'image', src: 'media/images/moros3.png', alt: 'Moros Screenshot 3' },
-                    { type: 'video', src: 'media/videos/moros.mp4', alt: 'Moros Trailer' }
                 ]
             },
             {
-                id: 'moros',
-                title: 'MOROS',
+                id: 'gunglitch',
+                title: 'GUNGLITCH',
                 year: '2024',
                 released: true,
-                thumbnail: 'media/images/moros1.png',
-                description: 'A remake of the hit game FLUOROANTIMONIC in the Godot Engine. The player collects offerings to appease a hungering god whose ichor spills from the skies as hazards. Solo-developed in a very small time span and it features PACKAGE ENCRYPTION [DRM], which was an interesting challenge to implement in Godot.',
-                itchUrl: 'https://chaak-007.itch.io/moros',
-                tags: ['FPS', 'Atmospheric', 'High Score', 'Solo', 'Godot'],
+                thumbnail: 'media/images/gunglitch1.png',
+                description: 'A fast-paced top down shooter where the player fights off robots and an evil scientist with a gun that glitches its properties. Player progressively builds a gun attuned to their playstyle and overcomes a bullet-hell boss battle at the end. Developed in Godot, and made with a loving team, I enjoyed working on the game design,programming and UI.',
+                itchUrl: 'https://chaak-007.itch.io/gunglitch',
+                tags: ['Top-down', 'Bullet-Hell', 'Rogue-like', 'Team', 'Godot'],
                 media: [
-                    { type: 'image', src: 'media/images/moros1.png', alt: 'Moros Screenshot 1' },
-                    { type: 'image', src: 'media/images/moros2.png', alt: 'Moros Screenshot 2' },
-                    { type: 'image', src: 'media/images/moros3.png', alt: 'Moros Screenshot 3' },
-                    { type: 'video', src: 'media/videos/moros.mp4', alt: 'Moros Trailer' }
+                    { type: 'image', src: 'media/images/gunglitch1.png', alt: 'Gunglitch Screenshot 1' },
+                    { type: 'video', src: 'media/videos/gunglitch.mp4', alt: 'Gunglitch Trailer' },
+                    { type: 'image', src: 'media/images/gunglitch2.png', alt: 'Gunglitch Screenshot 2' },
+                    { type: 'image', src: 'media/images/gunglitch3.png', alt: 'Gunglitch Screenshot 3' },
+                ]
+            },
+            {
+                id: 'tnn',
+                title: 'Tooth and Nail',
+                year: '2024',
+                released: true,
+                thumbnail: 'media/images/tnn2.png',
+                description: 'A boomer shooter where the player fights crude monsters in a very low res(64x64) world. The game was made for LowRezJam 24 with FPS action with bullet-hell elements. Developed in Godot with Jaelo, Jerridelo, and Maxi. I learnt layered music composition for this project which helped me with PHOSPHORUS audio design a lot.',
+                itchUrl: 'https://chaak-007.itch.io/tooth-and-nail',
+                tags: ['FPS', 'Bullet-Hell', 'LowRezJam24', 'Team', 'Godot'],
+                media: [
+                    { type: 'image', src: 'media/images/tnn2.png', alt: 'Tooth and Nail Screenshot 2' },
+                    { type: 'image', src: 'media/images/tnn3.png', alt: 'Tooth and Nail Screenshot 3' },
+                    { type: 'image', src: 'media/images/tnn4.png', alt: 'Tooth and Nail Screenshot 4' },
+                    { type: 'image', src: 'media/images/tnn5.png', alt: 'Tooth and Nail Screenshot 5' },
+                ]
+            },
+            {
+                id: 'cute',
+                title: 'CuteSweeper',
+                year: '2024',
+                released: true,
+                thumbnail: 'media/images/cute1.png',
+                description: 'A minesweeper game with horror/subversive narrative where you risk your fingers. I worked with Jerridelo on this project. I contributed the art, UI design and some narrative elements. I made 2 UI themes, one for when the player has all fingers, and one for when they have lost atleast 1 finger, players really enjoyed the meta-narrative and the UI change across gameplay.',
+                itchUrl: 'https://chaak-007.itch.io/cutesweeper',
+                tags: ['Minesweeper', 'Horror', 'Pixel-Art', 'Team', 'Godot'],
+                media: [
+                    { type: 'image', src: 'media/images/cute1.png', alt: 'CuteSweeper Screenshot 1' },
+                    { type: 'image', src: 'media/images/cute2.png', alt: 'CuteSweeper Screenshot 2' },
+                    { type: 'image', src: 'media/images/cute3.png', alt: 'CuteSweeper Screenshot 3' },
+                    { type: 'image', src: 'media/images/cute4.png', alt: 'CuteSweeper Screenshot 4' },
+                    { type: 'image', src: 'media/images/cute5.png', alt: 'CuteSweeper Screenshot 5' },
+                ]
+            },
+            {
+                id: 'cock',
+                title: 'Cockatrice',
+                year: '2024',
+                released: true,
+                thumbnail: 'media/images/cock1.png',
+                description: 'A simple "Real or Fake" deduction game I made in a few hours as a blackwalled experiment for Viral Marketing/Community formation on itch.io, the results were amazing! The first day had 100 browser plays, a whooping 432 views of the page and it was briefly featured as the most "new and popular" game on itch.io for a few hours before the site went down the following day due to a hosting error. For a game meant to be a meme, from its idea to its name to its gameplay, I am pretty proud that my strategy worked and brought in players despite that!',
+                itchUrl: 'https://chaak-007.itch.io/cockatrice',
+                tags: ['Real or fake', 'atmospheric', 'Simple', 'Solo', 'Godot'],
+                media: [
+                    { type: 'image', src: 'media/images/cock1.png', alt: 'Cockatrice Screenshot 1' },
+                    { type: 'video', src: 'media/videos/cock.mp4', alt: 'Cockatrice Gameplay' },
+                    { type: 'image', src: 'media/images/cock2.png', alt: 'Cockatrice Screenshot 2' },
+                    { type: 'image', src: 'media/images/cock3.png', alt: 'Cockatrice Screenshot 3' },
+                    { type: 'image', src: 'media/images/cock4.png', alt: 'Cockatrice Screenshot 4' },
                 ]
             }
         ];
