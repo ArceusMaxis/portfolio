@@ -49,8 +49,12 @@
                 <h1 class="section-title decorative-text">Showcase</h1>
             </div>
             <div class="dingbat-divider">A B C B A</div>
+            <h1>FEATURED GAMES</h1>
             <div class="showcase-grid" id="showcase-grid">
-                <!-- Grid items will be populated by JS -->
+            </div>
+            <div class="dingbat-divider">B N O N B</div>
+            <h1>DEMOS, WIP & EXPERIMENTS</h1>
+            <div class="demo-grid" id="demo-grid">
             </div>
         </section>
     </main>
@@ -83,6 +87,23 @@
             <div class="media-popup-info">
                 <h3 class="media-popup-title"></h3>
                 <p class="media-popup-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="demo-popup" class="demo-popup" style="display: none;">
+        <div class="demo-popup-overlay"></div>
+        <div class="demo-popup-container">
+            <button class="demo-popup-close" aria-label="Close demo popup">×</button>
+            <button class="demo-popup-nav demo-popup-prev" aria-label="Previous demo">🡰</button>
+            <button class="demo-popup-nav demo-popup-next" aria-label="Next demo">🡲</button>
+            <div class="demo-popup-content">
+                <img id="demo-popup-img" class="demo-popup-static" style="display: none;" />
+                <video id="demo-popup-video" class="demo-popup-static" style="display: none;" controls></video>
+            </div>
+            <div class="demo-popup-info">
+                <h3 class="demo-popup-title"></h3>
+                <p class="demo-popup-description"></p>
             </div>
         </div>
     </div>
@@ -186,6 +207,23 @@
                     { type: 'image', src: 'media/images/cock2.png', alt: 'Cockatrice Screenshot 2' },
                     { type: 'image', src: 'media/images/cock3.png', alt: 'Cockatrice Screenshot 3' },
                     { type: 'image', src: 'media/images/cock4.png', alt: 'Cockatrice Screenshot 4' },
+                ]
+            }
+        ];
+
+        const demoDemos = [
+            {
+                title: 'Persona',
+                description: 'Persona UI replication in Godot 4, using finite state systems.',
+                media: [
+                    { type: 'video', src: 'media/videos/persona3rui.mp4', alt: 'Persona UI replication in Godot 4' },
+                ]
+            },
+            {
+                title: 'Pomowod',
+                description: 'An experimental gameplay mechanic demonstration.',
+                media: [
+                    { type: 'video', src: 'media/videos/pomowod.mp4', alt: 'Pomowod Demo' },
                 ]
             }
         ];
