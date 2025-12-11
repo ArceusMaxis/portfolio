@@ -1752,7 +1752,7 @@ button:focus {
 .media-popup-static {
     width: 100%;
     height: 100%;
-    object-fit: fit;
+    object-fit: contain;
 }
 
 .media-popup-close {
@@ -1824,7 +1824,7 @@ button:focus {
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, var(--secondary), rgba(255, 255, 255, 0));
+    background: linear-gradient(to top, var(--secondary),rgba(255, 255, 255, 0));
     padding: 3rem 1.5rem 1.5rem;
     z-index: 2;
     min-height: 120px;
