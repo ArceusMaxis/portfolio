@@ -77,15 +77,17 @@
         <div class="media-popup-overlay"></div>
         <div class="media-popup-container">
             <button class="media-popup-close" aria-label="Close media popup">×</button>
-            <button class="media-popup-nav media-popup-prev" aria-label="Previous media">🡰</button>
-            <button class="media-popup-nav media-popup-next" aria-label="Next media">🡲</button>
             <div class="media-popup-content">
-                <img id="media-popup-img" class="media-popup-static" style="display: none;" />
-                <video id="media-popup-video" class="media-popup-static" style="display: none;" controls></video>
+                <img id="media-popup-img" class="media-popup-media" style="display: none;" />
+                <video id="media-popup-video" class="media-popup-media" style="display: none;" controls></video>
+                <button class="media-popup-nav media-popup-prev" aria-label="Previous media">🡰</button>
+                <button class="media-popup-nav media-popup-next" aria-label="Next media">🡲</button>
             </div>
             <button class="media-popup-play-btn" id="media-popup-play-btn" aria-label="Play game" style="cursor: pointer;">PLAY ▶</button>
             <div class="media-popup-info">
                 <h3 class="media-popup-title"></h3>
+                <p class="media-popup-year"></p>
+                <p class="media-popup-contribution"></p>
                 <p class="media-popup-description"></p>
             </div>
         </div>
@@ -95,14 +97,16 @@
         <div class="demo-popup-overlay"></div>
         <div class="demo-popup-container">
             <button class="demo-popup-close" aria-label="Close demo popup">×</button>
-            <button class="demo-popup-nav demo-popup-prev" aria-label="Previous demo">🡰</button>
-            <button class="demo-popup-nav demo-popup-next" aria-label="Next demo">🡲</button>
             <div class="demo-popup-content">
-                <img id="demo-popup-img" class="demo-popup-static" style="display: none;" />
-                <video id="demo-popup-video" class="demo-popup-static" style="display: none;" controls></video>
+                <img id="demo-popup-img" class="demo-popup-media" style="display: none;" />
+                <video id="demo-popup-video" class="demo-popup-media" style="display: none;" controls></video>
+                <button class="demo-popup-nav demo-popup-prev" aria-label="Previous demo">🡰</button>
+                <button class="demo-popup-nav demo-popup-next" aria-label="Next demo">🡲</button>
             </div>
             <div class="demo-popup-info">
                 <h3 class="demo-popup-title"></h3>
+                <p class="demo-popup-year"></p>
+                <p class="demo-popup-contribution"></p>
                 <p class="demo-popup-description"></p>
             </div>
         </div>
@@ -213,15 +217,32 @@
 
         const demoDemos = [
             {
-                title: 'Persona',
-                description: 'Persona UI replication in Godot 4, using finite state systems.',
+                title: 'Persona 3 RELOAD UI replication in Godot 4',
+                year: '2024',
+                contribution: 'Programming, Tweens, FSM',
+                description: 'Solo-developed practice exercise. Tweens, finite state systems, music from https://dova-s.jp.',
+                thumbnailOffset: 0,
                 media: [
                     { type: 'video', src: 'media/videos/persona3rui.mp4', alt: 'Persona UI replication in Godot 4' },
                 ]
             },
             {
+                title: '[REDACTED] UI inspired design in Godot 4',
+                year: '2024',
+                contribution: 'Solo - Programming, UI Design',
+                description: 'Solo-developed practice exercise. Tweens, Composition, art by psxiaoking.',
+                thumbnailOffset: 1,
+                media: [
+                    { type: 'video', src: 'media/videos/redui1.mkv', alt: '[REDACTED] UI inspired design in Godot 4' },
+                    { type: 'video', src: 'media/videos/redui2.mkv', alt: '[REDACTED] UI inspired design in Godot 4' }
+                ]
+            },
+            {
                 title: 'Pomowod',
+                year: '2024',
+                contribution: 'Solo - Game Design, Programming',
                 description: 'An experimental gameplay mechanic demonstration.',
+                thumbnailOffset: 0,
                 media: [
                     { type: 'video', src: 'media/videos/pomowod.mp4', alt: 'Pomowod Demo' },
                 ]

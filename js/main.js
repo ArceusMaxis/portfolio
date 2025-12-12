@@ -757,10 +757,14 @@ function openProjectMediaPopup(project, projectIndex) {
 
 function updateMediaPopupWithProject(project) {
     const titleEl = document.querySelector('.media-popup-title');
+    const yearEl = document.querySelector('.media-popup-year');
+    const contributionEl = document.querySelector('.media-popup-contribution');
     const descEl = document.querySelector('.media-popup-description');
     const playBtn = document.getElementById('media-popup-play-btn');
 
     if (titleEl) titleEl.textContent = project.title;
+    if (yearEl) yearEl.textContent = project.year ? `Year: ${project.year}` : '';
+    if (contributionEl) contributionEl.textContent = project.tags ? `Tags: ${project.tags.join(', ')}` : '';
     if (descEl) descEl.textContent = project.description;
 
     if (playBtn) {
@@ -870,9 +874,18 @@ function initDemoPopup() {
             let currentDemoIndex = parseInt(demoPopup.dataset.currentDemoIndex || 0);
             let currentMediaIndex = parseInt(demoPopup.dataset.currentMediaIndex || 0);
             
-            // Move to previous demo's last media
-            currentDemoIndex = (currentDemoIndex - 1 + demoDemos.length) % demoDemos.length;
-            currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
+            // First try to go to previous media within current demo
+            if (currentMediaIndex > 0) {
+                currentMediaIndex--;
+            } else if (currentDemoIndex > 0) {
+                // If no previous media, go to previous demo's last media
+                currentDemoIndex--;
+                currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
+            } else {
+                // Wrap around to last demo's last media
+                currentDemoIndex = demoDemos.length - 1;
+                currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
+            }
             
             displayDemoMedia(currentDemoIndex, currentMediaIndex);
         });
@@ -883,11 +896,23 @@ function initDemoPopup() {
             if (typeof demoDemos === 'undefined') return;
             
             let currentDemoIndex = parseInt(demoPopup.dataset.currentDemoIndex || 0);
+            let currentMediaIndex = parseInt(demoPopup.dataset.currentMediaIndex || 0);
+            const currentDemo = demoDemos[currentDemoIndex];
             
-            // Move to next demo's first media
-            currentDemoIndex = (currentDemoIndex + 1) % demoDemos.length;
+            // First try to go to next media within current demo
+            if (currentMediaIndex < currentDemo.media.length - 1) {
+                currentMediaIndex++;
+            } else if (currentDemoIndex < demoDemos.length - 1) {
+                // If no next media, go to next demo's first media
+                currentDemoIndex++;
+                currentMediaIndex = 0;
+            } else {
+                // Wrap around to first demo's first media
+                currentDemoIndex = 0;
+                currentMediaIndex = 0;
+            }
             
-            displayDemoMedia(currentDemoIndex, 0);
+            displayDemoMedia(currentDemoIndex, currentMediaIndex);
         });
     }
 
@@ -897,14 +922,31 @@ function initDemoPopup() {
         if (typeof demoDemos === 'undefined') return;
         
         let currentDemoIndex = parseInt(demoPopup.dataset.currentDemoIndex || 0);
+        let currentMediaIndex = parseInt(demoPopup.dataset.currentMediaIndex || 0);
+        const currentDemo = demoDemos[currentDemoIndex];
         
         if (e.key === 'ArrowLeft') {
-            currentDemoIndex = (currentDemoIndex - 1 + demoDemos.length) % demoDemos.length;
-            const lastMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
-            displayDemoMedia(currentDemoIndex, lastMediaIndex);
+            if (currentMediaIndex > 0) {
+                currentMediaIndex--;
+            } else if (currentDemoIndex > 0) {
+                currentDemoIndex--;
+                currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
+            } else {
+                currentDemoIndex = demoDemos.length - 1;
+                currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
+            }
+            displayDemoMedia(currentDemoIndex, currentMediaIndex);
         } else if (e.key === 'ArrowRight') {
-            currentDemoIndex = (currentDemoIndex + 1) % demoDemos.length;
-            displayDemoMedia(currentDemoIndex, 0);
+            if (currentMediaIndex < currentDemo.media.length - 1) {
+                currentMediaIndex++;
+            } else if (currentDemoIndex < demoDemos.length - 1) {
+                currentDemoIndex++;
+                currentMediaIndex = 0;
+            } else {
+                currentDemoIndex = 0;
+                currentMediaIndex = 0;
+            }
+            displayDemoMedia(currentDemoIndex, currentMediaIndex);
         }
     });
 }
@@ -952,10 +994,14 @@ function displayDemoMedia(demoIndex, mediaIndex) {
     const imgEl = document.querySelector('#demo-popup-img');
     const videoEl = document.querySelector('#demo-popup-video');
     const titleEl = document.querySelector('.demo-popup-title');
+    const yearEl = document.querySelector('.demo-popup-year');
+    const contributionEl = document.querySelector('.demo-popup-contribution');
     const descEl = document.querySelector('.demo-popup-description');
 
-    // Update title and description
+    // Update title, year, contribution and description
     if (titleEl) titleEl.textContent = demo.title || '';
+    if (yearEl) yearEl.textContent = demo.year ? `Year: ${demo.year}` : '';
+    if (contributionEl) contributionEl.textContent = demo.contribution || '';
     if (descEl) descEl.textContent = demo.description || '';
 
     // Hide both elements first
@@ -1001,11 +1047,19 @@ function initDemoGrid() {
         const firstMedia = demo.media && demo.media.length > 0 ? demo.media[0] : null;
         const thumbnailSrc = firstMedia ? firstMedia.src : '';
         const isImage = firstMedia && firstMedia.type === 'image';
+        
+        // Calculate object-position based on thumbnailOffset
+        let objectPosition = 'center';
+        if (demo.thumbnailOffset && typeof demo.thumbnailOffset === 'number') {
+            // Convert offset (-1 to 1) to object-position percentage
+            const percentage = 50 + (demo.thumbnailOffset * 50);
+            objectPosition = `${percentage}% center`;
+        }
 
         card.innerHTML = `
             ${isImage 
-                ? `<img src="${thumbnailSrc}" alt="${demo.title || 'Demo'}" class="demo-card-thumbnail" />`
-                : `<video class="demo-card-thumbnail" style="display: block;"><source src="${thumbnailSrc}" type="video/mp4"></video>`
+                ? `<img src="${thumbnailSrc}" alt="${demo.title || 'Demo'}" class="demo-card-thumbnail" style="object-position: ${objectPosition};" />`
+                : `<video class="demo-card-thumbnail" style="object-position: ${objectPosition}; display: block;"><source src="${thumbnailSrc}" type="video/mp4"></video>`
             }
         `;
 
