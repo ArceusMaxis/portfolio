@@ -53,7 +53,7 @@
             <div class="showcase-grid" id="showcase-grid">
             </div>
             <div class="dingbat-divider">B N O N B</div>
-            <h1>DEMOS, WIP & EXPERIMENTS</h1>
+            <h1>DEMOS & EXPERIMENTS</h1>
             <div class="demo-grid" id="demo-grid">
             </div>
         </section>
@@ -114,16 +114,18 @@
 
     <script src="js/main.js"></script>
     <script>
-        const showcaseProjects = [
+        const featuredProjects = [
             {
                 id: 'phosphorus',
                 title: 'PHOSPHORUS',
                 year: '2025',
-                released: true,
+                status: 'released',
                 thumbnail: 'media/images/phosphorus1.png',
+                thumbnailOffset: 0,
                 description: 'Winner of the inaugural Godot India Community Game Jam (#1 Overall, #1 Audio, #2 Visuals, #4 Gameplay). A first-person maze/dungeon crawler with horror elements, built in Godot. Players navigate a labyrinth filled with eerie atmospheres and challenging puzzles. Features dynamic lighting, ambient sound design, and a unique "looping" narrative.',
                 itchUrl: 'https://chaak-007.itch.io/phosphorus',
-                tags: ['Maze/Dungeon', 'FPS', 'Alt. Horror', 'Godot', 'Solo'],
+                contribution: 'Solo',
+                tags: ['Maze/Dungeon', 'FPS', 'Alt. Horror', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/phosphorus1.png', alt: 'Phosphorus Screenshot 1' },
                     { type: 'video', src: 'media/videos/phosphorus.mp4', alt: 'Phosphorus Trailer' },
@@ -135,11 +137,13 @@
                 id: 'moros',
                 title: 'Moros',
                 year: '2024',
-                released: true,
+                status: 'released',
                 thumbnail: 'media/images/moros1.png',
+                thumbnailOffset: 0,
                 description: 'A remake of the hit game FLUOROANTIMONIC in the Godot Engine. The player collects offerings to appease a hungering god whose ichor spills from the skies as hazards. Solo-developed in a very small time span and it features PACKAGE ENCRYPTION [DRM], which was an interesting challenge to implement in Godot.',
                 itchUrl: 'https://chaak-007.itch.io/moros',
-                tags: ['FPS', 'Atmospheric', 'High Score', 'Solo', 'Godot'],
+                contribution: 'Solo',
+                tags: ['FPS', 'Atmospheric', 'High Score', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/moros1.png', alt: 'Moros Screenshot 1' },
                     { type: 'video', src: 'media/videos/moros.mp4', alt: 'Moros Trailer' },
@@ -151,11 +155,13 @@
                 id: 'gunglitch',
                 title: 'GUNGLITCH',
                 year: '2024',
-                released: true,
+                status: 'released',
                 thumbnail: 'media/images/gunglitch1.png',
+                thumbnailOffset: 0,
                 description: 'A fast-paced top down shooter where the player fights off robots and an evil scientist with a gun that glitches its properties. Player progressively builds a gun attuned to their playstyle and overcomes a bullet-hell boss battle at the end. Developed in Godot, and made with a loving team, I enjoyed working on the game design,programming and UI.',
                 itchUrl: 'https://chaak-007.itch.io/gunglitch',
-                tags: ['Top-down', 'Bullet-Hell', 'Rogue-like', 'Team', 'Godot'],
+                contribution: 'Game Design, Programming, UI',
+                tags: ['Top-down', 'Bullet-Hell', 'Rogue-like', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/gunglitch1.png', alt: 'Gunglitch Screenshot 1' },
                     { type: 'video', src: 'media/videos/gunglitch.mp4', alt: 'Gunglitch Trailer' },
@@ -167,11 +173,13 @@
                 id: 'tnn',
                 title: 'Tooth and Nail',
                 year: '2024',
-                released: true,
+                status: 'released',
                 thumbnail: 'media/images/tnn2.png',
+                thumbnailOffset: 0,
                 description: 'A boomer shooter where the player fights crude monsters in a very low res(64x64) world. The game was made for LowRezJam 24 with FPS action with bullet-hell elements. Developed in Godot with Jaelo, Jerridelo, and Maxi. I learnt layered music composition for this project which helped me with PHOSPHORUS audio design a lot.',
                 itchUrl: 'https://chaak-007.itch.io/tooth-and-nail',
-                tags: ['FPS', 'Bullet-Hell', 'LowRezJam24', 'Team', 'Godot'],
+                contribution: 'Sound Design, Game Design',
+                tags: ['FPS', 'Bullet-Hell', 'LowRezJam24', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/tnn2.png', alt: 'Tooth and Nail Screenshot 2' },
                     { type: 'image', src: 'media/images/tnnwip1.png', alt: 'Tooth and Nail WIP Screenshot' },
@@ -185,11 +193,13 @@
                 id: 'cute',
                 title: 'CuteSweeper',
                 year: '2024',
-                released: true,
+                status: 'released',
                 thumbnail: 'media/images/cute1.png',
+                thumbnailOffset: 0,
                 description: 'A minesweeper game with horror/subversive narrative where you risk your fingers. I worked with Jerridelo on this project. I contributed the art, UI design and some narrative elements. I made 2 UI themes, one for when the player has all fingers, and one for when they have lost atleast 1 finger, players really enjoyed the meta-narrative and the UI change across gameplay.',
                 itchUrl: 'https://chaak-007.itch.io/cutesweeper',
-                tags: ['Minesweeper', 'Horror', 'Pixel-Art', 'Team', 'Godot'],
+                contribution: 'Art, UI Design, Narrative',
+                tags: ['Minesweeper', 'Horror', 'Pixel-Art', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/cute1.png', alt: 'CuteSweeper Screenshot 1' },
                     { type: 'image', src: 'media/images/cute2.png', alt: 'CuteSweeper Screenshot 2' },
@@ -202,11 +212,13 @@
                 id: 'cock',
                 title: 'Cockatrice',
                 year: '2024',
-                released: true,
+                status: 'released',
                 thumbnail: 'media/images/cock1.png',
+                thumbnailOffset: 0,
                 description: 'A simple "Real or Fake" deduction game I made in a few hours as a blackwalled experiment for Viral Marketing/Community formation on itch.io, the results were amazing! The first day had 100 browser plays, a whooping 432 views of the page and it was briefly featured as the most "new and popular" game on itch.io for a few hours before the site went down the following day due to a hosting error. For a game meant to be a meme, from its idea to its name to its gameplay, I am pretty proud that my strategy worked and brought in players despite that!',
                 itchUrl: 'https://chaak-007.itch.io/cockatrice',
-                tags: ['Real or fake', 'atmospheric', 'Simple', 'Solo', 'Godot'],
+                contribution: 'Solo',
+                tags: ['Real or fake', 'Atmospheric', 'Simple', 'Godot'],
                 media: [
                     { type: 'image', src: 'media/images/cock1.png', alt: 'Cockatrice Screenshot 1' },
                     { type: 'video', src: 'media/videos/cock.mp4', alt: 'Cockatrice Gameplay' },
@@ -214,37 +226,17 @@
                     { type: 'image', src: 'media/images/cock3.png', alt: 'Cockatrice Screenshot 3' },
                     { type: 'image', src: 'media/images/cock4.png', alt: 'Cockatrice Screenshot 4' },
                 ]
-            }
-        ];
-
-        const demoDemos = [
+            },
             {
-                title: 'Persona 3 RELOAD UI replication in Godot 4',
-                year: '2024',
-                contribution: 'Programming, Tweens, FSM',
-                description: 'Solo-developed practice exercise. Tweens, finite state systems, music from https://dova-s.jp.',
+                id: 'cycle-dreams',
+                title: 'Cycle Dreams',
+                year: '2025',
+                status: 'wip',
+                thumbnail: 'media/videos/cycdre5.mp4',
                 thumbnailOffset: 0,
-                media: [
-                    { type: 'video', src: 'media/videos/persona3rui.mp4', alt: 'Persona UI replication in Godot 4' },
-                ]
-            },
-            {
-                title: '[REDACTED] UI inspired design in Godot 4',
-                year: '2025',
-                contribution: 'Solo - Programming, UI Design',
-                description: 'Solo-developed practice exercise. Tweens, Composition, art by psxiaoking.',
-                thumbnailOffset: 1,
-                media: [
-                    { type: 'video', src: 'media/videos/redui1.mkv', alt: '[REDACTED] UI inspired design in Godot 4' },
-                    { type: 'video', src: 'media/videos/redui2.mkv', alt: '[REDACTED] UI inspired design in Godot 4' }
-                ]
-            },
-            {
-                title: 'Cycle Dreams - WIP Project',
-                year: '2025',
+                description: 'A game about an boy saving up to buy his dream bike in India, inspired by my elder brother\'s life. It uses a very intuitive drag-n-drop mechanic and many min-games that offer narrative immersion while providing an adqueate amount of challenge.',
                 contribution: 'Solo - Programming, Art, Design, Narrative',
-                description: 'A game about an boy saving up to buy his dream bike in India, inspired by my elder brother\'s life. It uses a very intuitive drag-n-drop mechanic and many min-games that offer narrative immersion while providing an adqueate amount of challenge. ',
-                thumbnailOffset: 0,
+                tags: ['Narrative', 'Mini-games', 'Personal', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/cycdre5.mp4', alt: 'Cycle Dreams WIP Footage' },
                     { type: 'video', src: 'media/videos/cycdre1.mp4', alt: 'Cycle Dreams WIP Footage' },
@@ -255,47 +247,15 @@
                 ]
             },
             {
-                title: 'Y2K style Loading Screen UI in Godot 4',
-                year: '2025',
-                contribution: 'Solo - Shader programming, UI composition, Asset creation',
-                description: 'Solo-developed for myself to use in future project UI designs. Features custom shaders, gradients and pattern generators.',
-                thumbnailOffset: 0.55,
-                media: [
-                    { type: 'video', src: 'media/videos/y2kls.mkv', alt: 'Y2K Shaders + Gradient assets made by me for ease of use' },
-                    { type: 'video', src: 'media/videos/y2kwip.mkv', alt: 'Y2K Shaders + Gradient assets made by me for ease of use' }
-                ]
-            },
-            {
-                title: 'Item Box Replication',
-                year: '2025',
-                contribution: 'Shader-programming, Rendering, Modelling and Scene Composition',
-                description: 'Semi-realistic Item Box (Mario Kart 8) made with Material Maker and Blender, rendered in Godot 4.',
-                thumbnailOffset: 0.55,
-                media: [
-                    { type: 'video', src: 'media/videos/itemboxgodot.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8)' },
-                    { type: 'video', src: 'media/videos/itemwip1.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8) WIP' },
-                    { type: 'video', src: 'media/videos/itemwip2.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8) WIP' },
-                    { type: 'video', src: 'media/videos/itemwip3.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8) WIP' },
-                ]
-            },
-            {
-                title: 'PBR Material/Objects Experiments',
-                year: '2025',
-                contribution: 'Shader-programming, Rendering, Modelling',
-                description: 'Made many models and materials for a REALorFAKE-WIP and BLINDBOX-WIP projects, included images are all renders from godot 4 in-editor or in-game and blender.',
-                thumbnailOffset: 0.55,
-                media: [
-                    { type: 'video', src: 'media/videos/pbritem1.mp4', alt: 'Mystic Cube' },
-                    { type: 'video', src: 'media/videos/pbritem2.mp4', alt: 'Mystic Cube editor view' },
-                    { type: 'video', src: 'media/videos/pbritem3.mp4', alt: 'Ball Inverse-Fresnel+Alpha experiment' },
-                ]
-            },
-            {
-                title: 'BOUNDS LINGER - WIP Project',
+                id: 'bounds-linger',
+                title: 'BOUNDS LINGER',
                 year: '2024',
-                contribution: 'Solo developed - all work is mine except fonts and leaderboard backend (provided by SilentWolf)',
-                description: 'A simple pong game with a score-chasing mechanic. Made in Godot 4. Currently a WIP project, will be released once complete with more features like power-ups, enemies. /n /n Streamed myself make the initial parts of this project on youtube and Twitch!',
-                thumbnailOffset: 0.55,
+                status: 'wip',
+                thumbnail: 'media/videos/bld1.mp4',
+                thumbnailOffset: 0,
+                description: 'A simple pong game with a score-chasing mechanic. Made in Godot 4. Currently a WIP project, will be released once complete with more features like power-ups, enemies. Streamed development on youtube and Twitch.',
+                contribution: 'Solo - all work except fonts and leaderboard backend',
+                tags: ['Pong', 'Score-chase', 'Arcade', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/bld1.mp4', alt: 'BOUNDS LINGER' },
                     { type: 'video', src: 'media/videos/bld2.mp4', alt: 'BOUNDS LINGER WIP' },
@@ -304,63 +264,30 @@
                 ]
             },
             {
-                title: 'Pomowod',
-                year: '2024',
-                contribution: 'Solo - Game Design, Programming',
-                description: 'An experimental gameplay mechanic demonstration.',
-                thumbnailOffset: 0,
-                media: [
-                    { type: 'video', src: 'media/videos/pomowod.mp4', alt: 'Pomowod Demo' },
-                ]
-            },
-            {
-                title: 'Shared-space Menu UI - TBoI Style',
-                year: '2024',
-                contribution: 'Solo - UI Design, Programming',
-                description: 'A Main Menu UI demo inspired by The Binding of Isaac\'s shared space menu system, made in Godot 4 using lerps.',
-                thumbnailOffset: 0,
-                media: [
-                    { type: 'video', src: 'media/videos/tboimenu.mp4', alt: 'TBoI MM UI Demo' },
-                ]
-            },
-            {
-                title: 'SmokeUp WIP meme game',
+                id: 'mach-50',
+                title: 'Mach 50',
                 year: '2025',
-                contribution: 'Solo - UI Design, Programming, etc',
-                description: 'A game depicting heavy themes of smoking addictions and conspiracies surrounding it, made in Godot 4. The videos depict a diegetic UI system to "smoke" a cigarette in-game and very early NPC-test dialogue.',
+                status: 'wip',
+                thumbnail: 'media/videos/mach501.mp4',
                 thumbnailOffset: 0,
-                media: [
-                    { type: 'video', src: 'media/videos/tboimenu.mp4', alt: 'TBoI MM UI Demo' },
-                ]
-            },
-            {
-                title: 'Yomi Yomi Dreamland',
-                year: '2025',
-                contribution: 'Team - Character Controller programming, LUT/Compositor effects',
-                description: 'YYDL is a Surrealistic FPS project helmed by my good friend Bored_guy, I got the opportunity to help the team by making a snappy, responsive Character Controller that reflected the game\'s identity.',
-                thumbnailOffset: 0,
-                media: [
-                    { type: 'video', src: 'media/videos/yydl.mp4', alt: 'YYDL Character movement showcase' },
-                    { type: 'image', src: 'media/images/LIGHTINGPITCHYYDL.png', alt: 'YYDL Lighting Pitch' },
-                ]
-            },
-            {
-                title: 'Mach 50 - WIP 3D Endless Runner',
-                year: '2025',
+                description: 'An endless runner minigame remake inspired by Zenless Zone Zero\'s Mach 25. Features speed-based movement system, obstacle dodging, and a scoring system. Currently working on adding more characters, power-ups, and juicing the gameplay feedback.',
                 contribution: 'Solo - Game Design, Programming, 3D Modelling, Texturing, Animation',
-                description: 'So, in Zenless ZOne Zero, there\'s this really cool endless runner minigame called Mach 25 which I absolutely love, but keeping a 100GB+ game installed just for a minigame is a bit much, so I decided to make my own version of it in Godot 4 as a WIP project. The game features a speed-based movement system, obstacle dodging, and a scoring system. Currently working on adding more characters, power-ups, and juicing the gameplay feedback.',
-                thumbnailOffset: 0,
+                tags: ['Endless Runner', '3D', 'Speed-based', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/mach501.mp4', alt: 'Mach 50 circa-september 2025' },
-                    { type: 'video', src: 'media/videos/mach502.mp4', alt: 'MAch 50 circa-may 2025' },
+                    { type: 'video', src: 'media/videos/mach502.mp4', alt: 'Mach 50 circa-may 2025' },
                 ]
             },
             {
-                title: 'REALorFAKE - WIP Project',
+                id: 'realorfake',
+                title: 'REALorFAKE',
                 year: '2024',
-                contribution: 'Solo - Game Design, Programming, 3D Modelling, Texturing, Animation',
-                description: 'A Papers Please style game where you process "Alien artifacts" to make sure they aren\'t booby trapped. It will feature a procedurally generated set of artifacts with different properties, and the player will have to use various tools and clues to test them.It will feature some meta-progression elements as well.',
+                status: 'wip',
+                thumbnail: 'media/videos/realorfake0.mp4',
                 thumbnailOffset: 0,
+                description: 'A Papers Please style game where you process "Alien artifacts" to make sure they aren\'t booby trapped. It will feature a procedurally generated set of artifacts with different properties, and the player will have to use various tools and clues to test them. It will feature some meta-progression elements as well.',
+                contribution: 'Solo - Game Design, Programming, 3D Modelling, Texturing, Animation',
+                tags: ['Deduction', 'Papers Please', '3D', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/realorfake0.mp4', alt: 'New models, CRT screens, Responsive 3D buttons' },
                     { type: 'video', src: 'media/videos/realorfake1.mp4', alt: 'Colored Buttons for "Simplicity"' },
@@ -369,31 +296,15 @@
                 ]
             },
             {
-                title: 'Bored Guy\'s Party Games',
+                id: 'static-silence',
+                title: 'Static Silence',
                 year: '2025',
-                contribution: 'Team - Programming, Animation, UI Effects',
-                description: 'A local multiplayer party game made in Godot 4, art and game design by Bored_guy. I helped bring the vision to life by programming the minigame, adding UI effects and polishing the overall experience.',
-                thumbnailOffset: -1,
-                media: [
-                    { type: 'video', src: 'media/videos/boredguypartygame.mp4', alt: 'Most recent Boredguy Party Game WIP footage' },
-                ]
-            },
-            {
-                title: 'Perfect Brew',
-                year: '2025',
-                contribution: 'Team - Programming, Sounds, UI Effects',
-                description: 'A deduction game where you run a tea shop and serve an elite customer the perfect brew. Made in Godot 4, art and game design by Leo.dchx.',
+                status: 'wip',
+                thumbnail: 'media/videos/static1.mp4',
                 thumbnailOffset: 0,
-                media: [
-                    { type: 'video', src: 'media/videos/perfectbrew.mp4', alt: 'Perfect Brew Jam version' },
-                ]
-            },
-            {
-                title: 'Static Silence - WIP Project',
-                year: '2025',
-                contribution: 'Team - Programming, Game design, Narrative',
-                description: 'A immersive horror experience, focusing on exploration and non-combat gameplay. Made in Godot 4, #D models by thneebdev, art by liv',
-                thumbnailOffset: 0,
+                description: 'An immersive horror experience, focusing on exploration and non-combat gameplay. Made in Godot 4 with 3D models by thneebdev and art by liv.',
+                contribution: 'Team - Programming, Game Design, Narrative',
+                tags: ['Horror', 'Exploration', '3D', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/static1.mp4', alt: 'Static silence footage - WIP' },
                     { type: 'video', src: 'media/videos/static2.mp4', alt: 'Static silence footage - WIP' },
@@ -401,28 +312,202 @@
                 ]
             },
             {
-                title: 'Antarctic Eggs - WIP Project',
-                year: '2024',
-                contribution: 'Solo - Programming, Gameplay Design',
-                description: 'A meme game inspired by ridiculous egg prices and Arctic Eggs by The Water Museum. Player cooks weird meals on a wok to serve to very... eccentric customers.',
+                id: 'yomi-yomi-dreamland',
+                title: 'Yomi Yomi Dreamland',
+                year: '2025',
+                status: 'wip',
+                thumbnail: 'media/videos/yydl.mp4',
                 thumbnailOffset: 0,
+                description: 'A Surrealistic FPS project helmed by Bored_guy. Contributed a snappy, responsive Character Controller that reflects the game\'s identity.',
+                contribution: 'Team - Character Controller programming, LUT/Compositor effects',
+                tags: ['FPS', 'Surreal', 'Experimental', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/yydl.mp4', alt: 'YYDL Character movement showcase' },
+                    { type: 'image', src: 'media/images/LIGHTINGPITCHYYDL.png', alt: 'YYDL Lighting Pitch' },
+                ]
+            }
+        ];
+
+        const demoZone = [
+            {
+                id: 'persona3-ui',
+                title: 'Persona 3 RELOAD UI Replication',
+                year: '2024',
+                status: 'demo',
+                thumbnail: 'media/videos/persona3rui.mp4',
+                thumbnailOffset: 0,
+                description: 'Solo-developed practice exercise. Tweens, finite state systems, music from https://dova-s.jp.',
+                contribution: 'Programming, Tweens, FSM',
+                tags: ['UI', 'Practice', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/persona3rui.mp4', alt: 'Persona UI replication in Godot 4' },
+                ]
+            },
+            {
+                id: 'redacted-ui',
+                title: '[REDACTED] UI Inspired Design',
+                year: '2025',
+                status: 'demo',
+                thumbnail: 'media/videos/redui1.mkv',
+                thumbnailOffset: 1,
+                description: 'Solo-developed practice exercise. Tweens, Composition, art by psxiaoking.',
+                contribution: 'Programming, UI Design',
+                tags: ['UI', 'Practice', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/redui1.mkv', alt: '[REDACTED] UI inspired design in Godot 4' },
+                    { type: 'video', src: 'media/videos/redui2.mkv', alt: '[REDACTED] UI inspired design in Godot 4' }
+                ]
+            },
+            {
+                id: 'y2k-loading-ui',
+                title: 'Y2K Style Loading Screen UI',
+                year: '2025',
+                status: 'demo',
+                thumbnail: 'media/videos/y2kls.mkv',
+                thumbnailOffset: 0.55,
+                description: 'Solo-developed for future project UI designs. Features custom shaders, gradients and pattern generators.',
+                contribution: 'Shader programming, UI composition, Asset creation',
+                tags: ['UI', 'Shaders', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/y2kls.mkv', alt: 'Y2K Shaders + Gradient assets made by me for ease of use' },
+                    { type: 'video', src: 'media/videos/y2kwip.mkv', alt: 'Y2K Shaders + Gradient assets made by me for ease of use' }
+                ]
+            },
+            {
+                id: 'item-box',
+                title: 'Item Box Replication',
+                year: '2025',
+                status: 'demo',
+                thumbnail: 'media/videos/itemboxgodot.mp4',
+                thumbnailOffset: 0.55,
+                description: 'Semi-realistic Item Box (Mario Kart 8) made with Material Maker and Blender, rendered in Godot 4.',
+                contribution: 'Shader-programming, Rendering, Modelling and Scene Composition',
+                tags: ['3D', 'Shaders', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/itemboxgodot.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8)' },
+                    { type: 'video', src: 'media/videos/itemwip1.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8) WIP' },
+                    { type: 'video', src: 'media/videos/itemwip2.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8) WIP' },
+                    { type: 'video', src: 'media/videos/itemwip3.mp4', alt: 'Semi-realistic Item Box (Mario Kart 8) WIP' },
+                ]
+            },
+            {
+                id: 'pbr-materials',
+                title: 'PBR Material & Objects Experiments',
+                year: '2025',
+                status: 'demo',
+                thumbnail: 'media/videos/pbritem1.mp4',
+                thumbnailOffset: 0.55,
+                description: 'Made many models and materials for REALorFAKE-WIP and BLINDBOX-WIP projects. All renders from Godot 4 in-editor, in-game and Blender.',
+                contribution: 'Shader-programming, Rendering, Modelling',
+                tags: ['3D', 'Shaders', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/pbritem1.mp4', alt: 'Mystic Cube' },
+                    { type: 'video', src: 'media/videos/pbritem2.mp4', alt: 'Mystic Cube editor view' },
+                    { type: 'video', src: 'media/videos/pbritem3.mp4', alt: 'Ball Inverse-Fresnel+Alpha experiment' },
+                ]
+            },
+            {
+                id: 'pomowod',
+                title: 'Pomowod',
+                year: '2024',
+                status: 'demo',
+                thumbnail: 'media/videos/pomowod.mp4',
+                thumbnailOffset: 0,
+                description: 'An experimental gameplay mechanic demonstration.',
+                contribution: 'Game Design, Programming',
+                tags: ['Experimental', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/pomowod.mp4', alt: 'Pomowod Demo' },
+                ]
+            },
+            {
+                id: 'tboi-menu',
+                title: 'Shared-space Menu UI - TBoI Style',
+                year: '2024',
+                status: 'demo',
+                thumbnail: 'media/videos/tboimenu.mp4',
+                thumbnailOffset: 0,
+                description: 'A Main Menu UI demo inspired by The Binding of Isaac\'s shared space menu system, made in Godot 4 using lerps.',
+                contribution: 'UI Design, Programming',
+                tags: ['UI', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/tboimenu.mp4', alt: 'TBoI MM UI Demo' },
+                ]
+            },
+            {
+                id: 'bored-guys-party-games',
+                title: 'Bored Guy\'s Party Games',
+                year: '2025',
+                status: 'demo',
+                thumbnail: 'media/videos/boredguypartygame.mp4',
+                thumbnailOffset: -1,
+                description: 'A local multiplayer party game made in Godot 4, art and game design by Bored_guy. Contributed programming, animation, and UI effects.',
+                contribution: 'Team - Programming, Animation, UI Effects',
+                tags: ['Multiplayer', 'Party', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/boredguypartygame.mp4', alt: 'Most recent Boredguy Party Game WIP footage' },
+                ]
+            },
+            {
+                id: 'perfect-brew',
+                title: 'Perfect Brew',
+                year: '2025',
+                status: 'demo',
+                thumbnail: 'media/videos/perfectbrew.mp4',
+                thumbnailOffset: 0,
+                description: 'A deduction game where you run a tea shop and serve an elite customer the perfect brew. Made in Godot 4, art and game design by Leo.dchx.',
+                contribution: 'Team - Programming, Sounds, UI Effects',
+                tags: ['Deduction', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/perfectbrew.mp4', alt: 'Perfect Brew Jam version' },
+                ]
+            },
+            {
+                id: 'smokeup',
+                title: 'SmokeUp',
+                year: '2025',
+                status: 'wip',
+                thumbnail: 'media/videos/tboimenu.mp4',
+                thumbnailOffset: 0,
+                description: 'A game depicting heavy themes of smoking addictions and conspiracies surrounding it, made in Godot 4. Features a diegetic UI system to "smoke" a cigarette in-game and very early NPC-test dialogue.',
+                contribution: 'Solo - UI Design, Programming',
+                tags: ['Narrative', 'Godot'],
+                media: [
+                    { type: 'video', src: 'media/videos/smokeupui.mp4', alt: 'SmokeUp Demo' },
+                ]
+            },
+            {
+                id: 'antarctic-eggs',
+                title: 'Antarctic Eggs',
+                year: '2024',
+                status: 'wip',
+                thumbnail: 'media/videos/antegg.mp4',
+                thumbnailOffset: 0,
+                description: 'A meme game inspired by ridiculous egg prices and Arctic Eggs by The Water Museum. Player cooks weird meals on a wok to serve to very eccentric customers.',
+                contribution: 'Solo - Programming, Gameplay Design',
+                tags: ['Meme', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/antegg.mp4', alt: 'Egg juggling haha' },
                 ]
             },
             {
-                title: 'Gengeon - WIP Project',
+                id: 'gengeon',
+                title: 'Gengeon',
                 year: '2025',
-                contribution: 'Solo - Programming, Gameplay Design, Art',
-                description: 'A proc-gen dungeon crawling adventure demo with various traps, enemies and loot. Currently a WIP project, will be released once complete with more features like abilities, enemies, loot, etc.',
+                status: 'wip',
+                thumbnail: 'media/videos/gengeon.mp4',
                 thumbnailOffset: 0,
+                description: 'A proc-gen dungeon crawling adventure demo with various traps, enemies and loot. Currently a WIP project, will be released once complete with more features like abilities, enemies, loot, etc.',
+                contribution: 'Solo - Programming, Gameplay Design, Art',
+                tags: ['Dungeon Crawler', 'Proc-Gen', 'Godot'],
                 media: [
                     { type: 'video', src: 'media/videos/gengeon.mp4', alt: 'gengeon basic lvl1 demo version' },
                 ]
-            },
-            // blindbox, halorl, bean runner + sweep again for old projects
-            // also add polish 
+            }
         ];
+
+        const showcaseProjects = featuredProjects;
+        const demoDemos = demoZone;
     </script>
 </body>
 </html>

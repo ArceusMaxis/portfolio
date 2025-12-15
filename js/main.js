@@ -633,31 +633,43 @@ function initShowcaseGrid() {
     const gridContainer = document.getElementById('showcase-grid');
     if (!gridContainer || typeof showcaseProjects === 'undefined') return;
 
-    // Create HTML for each project card
     showcaseProjects.forEach((project, projectIndex) => {
         const card = document.createElement('div');
         card.className = 'showcase-card';
+        
+        const isThumbnailVideo = project.thumbnail && (project.thumbnail.endsWith('.mp4') || project.thumbnail.endsWith('.mkv'));
+        
+        let objectPosition = 'center';
+        if (project.thumbnailOffset && typeof project.thumbnailOffset === 'number') {
+            const percentage = 50 + (project.thumbnailOffset * 50);
+            objectPosition = `${percentage}% center`;
+        }
+        
+        const thumbnailHTML = isThumbnailVideo 
+            ? `<video class="showcase-card-thumbnail" preload="metadata" style="object-position: ${objectPosition};"><source src="${project.thumbnail}" type="video/mp4"></video>`
+            : `<img src="${project.thumbnail}" alt="${project.title}" class="showcase-card-thumbnail" style="object-position: ${objectPosition};" />`;
+        
         card.innerHTML = `
-            <img src="${project.thumbnail}" alt="${project.title}" class="showcase-card-thumbnail" />
+            ${thumbnailHTML}
             <div class="showcase-card-overlay">
                 <div class="showcase-card-header">
                     <h3 class="showcase-card-title">${project.title}</h3>
                     <div class="showcase-card-meta">
                         <span class="showcase-card-year">${project.year}</span>
                         <div class="showcase-card-status">
-                            ${project.released ? '<span class="showcase-card-status-icon">▶</span>' : '<span class="showcase-card-status-icon">⚙</span>'}
-                            <span>${project.released ? 'PLAYABLE' : 'DEMO VIDEO'}</span>
+                            ${project.status === 'released' ? '<span class="showcase-card-status-icon">▶</span>' : '<span class="showcase-card-status-icon">⚙</span>'}
+                            <span>${project.status === 'released' ? 'PLAYABLE' : 'DEMO VIDEO'}</span>
                         </div>
                     </div>
                 </div>
                 <div class="showcase-card-footer">
                     <button class="showcase-card-btn album-btn" title="View album">OPEN ALBUM</button>
-                    ${project.released ? `<button class="showcase-card-btn play-btn" title="Play on itch.io">PLAY</button>` : ''}
+                    ${project.status === 'released' ? `<button class="showcase-card-btn play-btn" title="Play on itch.io">PLAY</button>` : ''}
                 </div>
             </div>
         `;
 
-        const thumbnailImg = card.querySelector('.showcase-card-thumbnail');
+        const thumbnail = card.querySelector('.showcase-card-thumbnail');
         
         // Album button - opens media popup
         const albumBtn = card.querySelector('.album-btn');
@@ -688,15 +700,18 @@ function initShowcaseGrid() {
             card.thumbnailRotationTimer = setInterval(() => {
                 currentImageIndex = (currentImageIndex + 1) % imageIndices.length;
                 const mediaIndex = imageIndices[currentImageIndex];
-                thumbnailImg.src = project.media[mediaIndex].src;
+                if (thumbnail.tagName === 'IMG') {
+                    thumbnail.src = project.media[mediaIndex].src;
+                }
             }, 1300);
 
             // Clear timer when hovering or interacting
             card.addEventListener('mouseleave', () => {
-                // Reset to first image
                 if (card.thumbnailRotationTimer) {
                     currentImageIndex = 0;
-                    thumbnailImg.src = project.thumbnail;
+                    if (thumbnail.tagName === 'IMG') {
+                        thumbnail.src = project.thumbnail;
+                    }
                 }
             });
         }
@@ -1038,30 +1053,25 @@ function initDemoGrid() {
     const gridContainer = document.getElementById('demo-grid');
     if (!gridContainer || typeof demoDemos === 'undefined') return;
 
-    // Create HTML for each demo card
     demoDemos.forEach((demo, demoIndex) => {
         const card = document.createElement('div');
         card.className = 'demo-card';
         
-        // Get first image/video for thumbnail
         const firstMedia = demo.media && demo.media.length > 0 ? demo.media[0] : null;
         const thumbnailSrc = firstMedia ? firstMedia.src : '';
         const isImage = firstMedia && firstMedia.type === 'image';
         
-        // Calculate object-position based on thumbnailOffset
         let objectPosition = 'center';
         if (demo.thumbnailOffset && typeof demo.thumbnailOffset === 'number') {
-            // Convert offset (-1 to 1) to object-position percentage
             const percentage = 50 + (demo.thumbnailOffset * 50);
             objectPosition = `${percentage}% center`;
         }
 
-        card.innerHTML = `
-            ${isImage 
-                ? `<img src="${thumbnailSrc}" alt="${demo.title || 'Demo'}" class="demo-card-thumbnail" style="object-position: ${objectPosition};" />`
-                : `<video class="demo-card-thumbnail" style="object-position: ${objectPosition}; display: block;"><source src="${thumbnailSrc}" type="video/mp4"></video>`
-            }
-        `;
+        const thumbnailHTML = isImage
+            ? `<img src="${thumbnailSrc}" alt="${demo.title || 'Demo'}" class="demo-card-thumbnail" style="object-position: ${objectPosition};" />`
+            : `<video class="demo-card-thumbnail" preload="metadata" style="object-position: ${objectPosition};"><source src="${thumbnailSrc}" type="video/mp4"></video>`;
+        
+        card.innerHTML = thumbnailHTML;
 
         card.addEventListener('click', () => {
             openDemoPopup(demo, demoIndex);
