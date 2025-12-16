@@ -535,10 +535,8 @@ function initMediaPopup() {
         isOpen = false;
         mediaPopup.style.display = 'none';
         document.body.style.overflow = 'auto';
-        // Clear project data
         delete mediaPopup.dataset.currentProject;
         delete mediaPopup.dataset.currentMediaIndex;
-        // Clear auto-rotation timer
         if (mediaPopup.autoRotationTimer) {
             clearInterval(mediaPopup.autoRotationTimer);
             mediaPopup.autoRotationTimer = null;
@@ -584,26 +582,22 @@ function initMediaPopup() {
     };
     const nextMedia = () => {
         const mediaPopup = document.getElementById('media-popup');
-        // If using project-based popup
         if (mediaPopup.dataset.currentProject !== undefined && typeof showcaseProjects !== 'undefined') {
             const projectIndex = parseInt(mediaPopup.dataset.currentProject);
             const currentIndex = parseInt(mediaPopup.dataset.currentMediaIndex || 0);
             displayProjectMedia(showcaseProjects[projectIndex], currentIndex + 1);
         } else {
-            // Old functionality
             displayMedia(currentMediaIndex + 1);
         }
     };
 
     const prevMedia = () => {
         const mediaPopup = document.getElementById('media-popup');
-        // If using project-based popup
         if (mediaPopup.dataset.currentProject !== undefined && typeof showcaseProjects !== 'undefined') {
             const projectIndex = parseInt(mediaPopup.dataset.currentProject);
             const currentIndex = parseInt(mediaPopup.dataset.currentMediaIndex || 0);
             displayProjectMedia(showcaseProjects[projectIndex], currentIndex - 1);
         } else {
-            // Old functionality
             displayMedia(currentMediaIndex - 1);
         }
     };
@@ -671,7 +665,6 @@ function initShowcaseGrid() {
 
         const thumbnail = card.querySelector('.showcase-card-thumbnail');
         
-        // Album button - opens media popup
         const albumBtn = card.querySelector('.album-btn');
         if (albumBtn) {
             albumBtn.addEventListener('click', (e) => {
@@ -680,7 +673,6 @@ function initShowcaseGrid() {
             });
         }
 
-        // Play button - opens itch.io link
         const playBtn = card.querySelector('.play-btn');
         if (playBtn) {
             playBtn.addEventListener('click', (e) => {
@@ -689,7 +681,6 @@ function initShowcaseGrid() {
             });
         }
 
-        // Start auto-rotation for thumbnail images
         const imageCount = project.media.filter(m => m.type === 'image').length;
         if (imageCount > 1) {
             let currentImageIndex = 0;
@@ -705,7 +696,6 @@ function initShowcaseGrid() {
                 }
             }, 1300);
 
-            // Clear timer when hovering or interacting
             card.addEventListener('mouseleave', () => {
                 if (card.thumbnailRotationTimer) {
                     currentImageIndex = 0;
@@ -719,7 +709,6 @@ function initShowcaseGrid() {
         gridContainer.appendChild(card);
     });
 
-    // Attach scroll effects to new cards
     const cards = gridContainer.querySelectorAll('.showcase-card');
     cards.forEach(card => {
         card.style.opacity = '0';
@@ -750,22 +739,17 @@ function openProjectMediaPopup(project, projectIndex) {
     const mediaPopup = document.getElementById('media-popup');
     if (!mediaPopup || !project.media || project.media.length === 0) return;
 
-    // Clear any existing auto-rotation timer
     if (mediaPopup.autoRotationTimer) {
         clearInterval(mediaPopup.autoRotationTimer);
     }
 
-    // Update popup with project data
     updateMediaPopupWithProject(project);
 
-    // Display first media item
     displayProjectMedia(project, 0);
 
-    // Show popup
     mediaPopup.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
-    // Store current project for navigation
     mediaPopup.dataset.currentProject = projectIndex;
     mediaPopup.dataset.currentMediaIndex = 0;
 }
@@ -779,15 +763,20 @@ function updateMediaPopupWithProject(project) {
 
     if (titleEl) titleEl.textContent = project.title;
     if (yearEl) yearEl.textContent = project.year ? `Year: ${project.year}` : '';
-    if (contributionEl) contributionEl.textContent = project.tags ? `Tags: ${project.tags.join(', ')}` : '';
+    if (contributionEl) {
+        const prefix = project.solo ? 'Solo - ' : 'Team - ';
+        contributionEl.textContent = project.contributions ? `Contributions: ${prefix}${project.contributions.join(', ')}` : '';
+    }
     if (descEl) descEl.textContent = project.description;
 
     if (playBtn) {
-        if (project.released) {
+        if (project.status === 'released') {
             playBtn.textContent = 'PLAY ▶';
+            playBtn.style.cursor = 'pointer';
             playBtn.onclick = () => window.open(project.itchUrl, '_blank');
         } else {
             playBtn.textContent = 'WIP';
+            playBtn.style.cursor = 'default';
             playBtn.onclick = null;
         }
     }
@@ -796,7 +785,6 @@ function updateMediaPopupWithProject(project) {
 function displayProjectMedia(project, index) {
     if (!project.media || project.media.length === 0) return;
 
-    // Wrap around
     if (index >= project.media.length) {
         index = 0;
     } else if (index < 0) {
@@ -808,7 +796,6 @@ function displayProjectMedia(project, index) {
     const videoEl = document.querySelector('#media-popup-video');
     const infoEl = document.querySelector('.media-popup-info');
 
-    // Hide both elements first
     imgEl.style.display = 'none';
     videoEl.style.display = 'none';
 
@@ -816,10 +803,8 @@ function displayProjectMedia(project, index) {
         imgEl.src = media.src;
         imgEl.alt = media.alt;
         imgEl.style.display = 'block';
-        // Show info for images
         if (infoEl) infoEl.style.display = 'flex';
     } else if (media.type === 'video') {
-        // Completely reset video element
         videoEl.pause();
         videoEl.currentTime = 0;
         videoEl.innerHTML = '';
@@ -829,15 +814,12 @@ function displayProjectMedia(project, index) {
         source.type = 'video/mp4';
         videoEl.appendChild(source);
         
-        // Load and play the new video
         videoEl.load();
         videoEl.style.display = 'block';
         videoEl.play().catch(() => {});
-        // Hide info for videos to keep controls accessible
-        if (infoEl) infoEl.style.display = 'none';
+        if (infoEl) infoEl.style.display = 'flex';
     }
 
-    // Update popup data
     const mediaPopup = document.getElementById('media-popup');
     if (mediaPopup) {
         mediaPopup.dataset.currentMediaIndex = index;

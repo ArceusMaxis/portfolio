@@ -2052,7 +2052,6 @@ button:focus {
     }
 }
 
-/* Demo Grid - Same as Showcase Grid */
 .demo-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2082,7 +2081,6 @@ button:focus {
     display: block;
 }
 
-/* Demo Popup - Similar to Media Popup */
 .demo-popup {
     position: fixed;
     top: 0;
