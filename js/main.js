@@ -574,8 +574,7 @@ function initMediaPopup() {
             source.type = 'video/mp4';
             videoEl.appendChild(source);
             videoEl.style.display = 'block';
-            videoEl.play().catch(() => {
-            });
+            videoEl.play().catch(() => {});
         }
 
         titleEl.textContent = media.alt;
@@ -716,7 +715,6 @@ function initShowcaseGrid() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
 
-    // Use intersection observer for animation
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -835,35 +833,29 @@ function initDemoPopup() {
     const prevBtn = demoPopup.querySelector('.demo-popup-prev');
     const nextBtn = demoPopup.querySelector('.demo-popup-next');
 
-    // Close popup function
     const closePopup = () => {
         demoPopup.style.display = 'none';
         document.body.style.overflow = 'auto';
         
-        // Clear auto-rotation timer if exists
         if (demoPopup.autoRotationTimer) {
             clearInterval(demoPopup.autoRotationTimer);
         }
     };
 
-    // Close on overlay click
     if (overlay) {
         overlay.addEventListener('click', closePopup);
     }
 
-    // Close button
     if (closeBtn) {
         closeBtn.addEventListener('click', closePopup);
     }
 
-    // Keyboard close (Escape)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && demoPopup.style.display !== 'none') {
             closePopup();
         }
     });
 
-    // Navigation
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
             if (typeof demoDemos === 'undefined') return;
@@ -871,15 +863,12 @@ function initDemoPopup() {
             let currentDemoIndex = parseInt(demoPopup.dataset.currentDemoIndex || 0);
             let currentMediaIndex = parseInt(demoPopup.dataset.currentMediaIndex || 0);
             
-            // First try to go to previous media within current demo
             if (currentMediaIndex > 0) {
                 currentMediaIndex--;
             } else if (currentDemoIndex > 0) {
-                // If no previous media, go to previous demo's last media
                 currentDemoIndex--;
                 currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
             } else {
-                // Wrap around to last demo's last media
                 currentDemoIndex = demoDemos.length - 1;
                 currentMediaIndex = demoDemos[currentDemoIndex].media.length - 1;
             }
@@ -896,15 +885,12 @@ function initDemoPopup() {
             let currentMediaIndex = parseInt(demoPopup.dataset.currentMediaIndex || 0);
             const currentDemo = demoDemos[currentDemoIndex];
             
-            // First try to go to next media within current demo
             if (currentMediaIndex < currentDemo.media.length - 1) {
                 currentMediaIndex++;
             } else if (currentDemoIndex < demoDemos.length - 1) {
-                // If no next media, go to next demo's first media
                 currentDemoIndex++;
                 currentMediaIndex = 0;
             } else {
-                // Wrap around to first demo's first media
                 currentDemoIndex = 0;
                 currentMediaIndex = 0;
             }
@@ -913,7 +899,6 @@ function initDemoPopup() {
         });
     }
 
-    // Keyboard navigation
     document.addEventListener('keydown', (e) => {
         if (demoPopup.style.display === 'none') return;
         if (typeof demoDemos === 'undefined') return;
@@ -952,16 +937,13 @@ function openDemoPopup(demo, demoIndex) {
     const demoPopup = document.getElementById('demo-popup');
     if (!demoPopup || !demo || !demo.media || demo.media.length === 0) return;
 
-    // Store all demos and current demo index for navigation across all demos
     if (typeof demoDemos !== 'undefined') {
         demoPopup.allDemos = demoDemos;
         demoPopup.currentDemoIndex = demoIndex !== undefined ? demoIndex : 0;
     }
 
-    // Display first element of this demo
     displayDemoMedia(demoIndex !== undefined ? demoIndex : 0, 0);
 
-    // Show popup
     demoPopup.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 }
@@ -970,7 +952,6 @@ function displayDemoMedia(demoIndex, mediaIndex) {
     const demoPopup = document.getElementById('demo-popup');
     if (!demoPopup || typeof demoDemos === 'undefined') return;
 
-    // Wrap around demos
     if (demoIndex >= demoDemos.length) {
         demoIndex = 0;
     } else if (demoIndex < 0) {
@@ -980,7 +961,6 @@ function displayDemoMedia(demoIndex, mediaIndex) {
     const demo = demoDemos[demoIndex];
     if (!demo || !demo.media || demo.media.length === 0) return;
 
-    // Wrap around media within the demo
     if (mediaIndex >= demo.media.length) {
         mediaIndex = 0;
     } else if (mediaIndex < 0) {
@@ -995,13 +975,11 @@ function displayDemoMedia(demoIndex, mediaIndex) {
     const contributionEl = document.querySelector('.demo-popup-contribution');
     const descEl = document.querySelector('.demo-popup-description');
 
-    // Update title, year, contribution and description
     if (titleEl) titleEl.textContent = demo.title || '';
     if (yearEl) yearEl.textContent = demo.year ? `Year: ${demo.year}` : '';
     if (contributionEl) contributionEl.textContent = demo.contribution || '';
     if (descEl) descEl.textContent = demo.description || '';
 
-    // Hide both elements first
     imgEl.style.display = 'none';
     videoEl.style.display = 'none';
 
@@ -1010,7 +988,6 @@ function displayDemoMedia(demoIndex, mediaIndex) {
         imgEl.alt = media.alt || 'Demo image';
         imgEl.style.display = 'block';
     } else if (media.type === 'video') {
-        // Completely reset video element
         videoEl.pause();
         videoEl.currentTime = 0;
         videoEl.innerHTML = '';
@@ -1020,13 +997,11 @@ function displayDemoMedia(demoIndex, mediaIndex) {
         source.type = 'video/mp4';
         videoEl.appendChild(source);
         
-        // Load and play the new video
         videoEl.load();
         videoEl.style.display = 'block';
         videoEl.play().catch(() => {});
     }
 
-    // Update popup data
     demoPopup.dataset.currentDemoIndex = demoIndex;
     demoPopup.dataset.currentMediaIndex = mediaIndex;
 }
@@ -1062,7 +1037,6 @@ function initDemoGrid() {
         gridContainer.appendChild(card);
     });
 
-    // Attach scroll effects to new cards
     const cards = gridContainer.querySelectorAll('.demo-card');
     cards.forEach(card => {
         card.style.opacity = '0';
@@ -1070,7 +1044,6 @@ function initDemoGrid() {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     });
 
-    // Use intersection observer for animation
     const observerOptions = {
         root: null,
         rootMargin: '0px',
