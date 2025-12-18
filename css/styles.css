@@ -953,7 +953,7 @@ main {
 }
 
 .spotlight-name {
-    font-family: 'FleuronMixed', fantasy;
+    font-family: 'FleuronRegular', fantasy;
     font-size: 1.8rem;
     display: flex;
     align-items: center;
